@@ -86,7 +86,7 @@ def match_addresses(addresses, match_file, log_file, process_id, stats_queue):
                 return
             
             count += 1
-            if count % 1 == 0:  # Log every 10,000 keys
+            if count % 1 == 0:  # Log every 1 keys
                 elapsed_time = time.time() - start_time
                 speed = count / elapsed_time
                 stats_queue.put((process_id, count, elapsed_time, speed))
@@ -115,7 +115,7 @@ def print_stats(stats_queue, num_processes):
             for pid, (count, elapsed_time, speed) in stats.items():
                 print(f"Process {pid:<11}{count:<15}{elapsed_time:<20.2f}{speed:<15.2f}")
             
-            time.sleep(1)  # Sleep briefly to avoid busy waiting
+            # time.sleep(1)  # Sleep briefly to avoid busy waiting
     except KeyboardInterrupt:
         print("\nTerminating stats display.")
 
