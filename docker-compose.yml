@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  btc-address-matcher:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: btc_address_matcher
+    volumes:
+      - ./logs:/app/logs
+      - ./results:/app/results
+      - ./data.txt:/app/data.txt
+    command: python python_server.py
+    restart: on-failure
