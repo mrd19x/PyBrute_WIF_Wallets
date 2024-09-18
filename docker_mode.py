@@ -147,5 +147,5 @@ def check_addresses_from_file(data_file, match_file, log_file, num_processes):
 data_file = '/app/data.txt'  # Assuming data.txt is in the container
 match_file = 'match.txt'  # Results file name
 log_file = 'process_log'  # Base name for log files
-num_processes = 10  # Set the number of processes (cores) you want to use
+num_processes = 15  # Set the number of processes (cores) you want to use
 check_addresses_from_file(data_file, match_file, log_file, num_processes)
