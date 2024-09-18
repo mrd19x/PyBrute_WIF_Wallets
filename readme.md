@@ -7,9 +7,8 @@ This project is a Bitcoin address matcher that generates private keys and checks
 - Docker: Ensure Docker is installed and running on your system. You can download Docker from [Docker's official website](https://www.docker.com/get-started).
 
 ## Project Structure
-
-/your-project-directory 
-│ 
+    /your-project-directory 
+    │ 
     ├── Dockerfile 
     ├── requirements.txt 
     ├── python_server.py 
