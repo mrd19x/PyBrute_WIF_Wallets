@@ -10,5 +10,5 @@ services:
       - ./logs:/app/logs
       - ./results:/app/results
       - ./data.txt:/app/data.txt
-    command: python python_server.py
+    command: python docker_mode.py
     restart: on-failure
