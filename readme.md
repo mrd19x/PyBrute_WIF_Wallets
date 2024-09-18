@@ -1,4 +1,4 @@
-# Bitcoin Address Matcher
+# PyBrute_WIF_Wallets
 
 This project is a Bitcoin address matcher that generates private keys and checks if they match any address from a given list. It uses Docker for consistent environment setup.
 
@@ -28,10 +28,10 @@ This project is a Bitcoin address matcher that generates private keys and checks
 2. Build the Docker image using the following command:
 
     ```bash
-    docker build -t btc-address-matcher .
+    docker build -t PyBrute_WIF_Wallets .
     ```
 
-    - `btc-address-matcher` is the name of the Docker image. You can choose a different name if you prefer.
+    - `PyBrute_WIF_Wallets` is the name of the Docker image. You can choose a different name if you prefer.
 
 ## Running the Docker Container
 
@@ -44,7 +44,7 @@ This project is a Bitcoin address matcher that generates private keys and checks
       -v $(pwd)/logs:/app/logs \
       -v $(pwd)/results:/app/results \
       -v $(pwd)/data.txt:/app/data.txt \
-      btc-address-matcher
+      PyBrute_WIF_Wallets
     ```
 
     - `-v $(pwd)/logs:/app/logs`: Maps the `logs` directory on the host to `/app/logs` in the container. Logs will be saved here.
