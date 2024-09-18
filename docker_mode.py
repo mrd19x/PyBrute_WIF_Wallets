@@ -86,7 +86,7 @@ def match_addresses(addresses, match_file, log_file, process_id, stats_queue):
                 return
             
             count += 1
-            if count % 10000 == 0:  # Log every 10,000 keys
+            if count % 1 == 0:  # Log every 10,000 keys
                 elapsed_time = time.time() - start_time
                 speed = count / elapsed_time
                 stats_queue.put((process_id, count, elapsed_time, speed))
@@ -147,5 +147,5 @@ def check_addresses_from_file(data_file, match_file, log_file, num_processes):
 data_file = '/app/data.txt'  # Assuming data.txt is in the container
 match_file = 'match.txt'  # Results file name
 log_file = 'process_log'  # Base name for log files
-num_processes = 4  # Set the number of processes (cores) you want to use
+num_processes = 10  # Set the number of processes (cores) you want to use
 check_addresses_from_file(data_file, match_file, log_file, num_processes)
