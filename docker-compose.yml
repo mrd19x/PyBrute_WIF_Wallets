@@ -14,4 +14,4 @@ services:
       - ./logs:/app/logs
       - ./results:/app/results
       - ./data.txt:/app/data.txt
-    command: python local_mode_range_2.py --start= --end=000000000000000000000000000000000000000000000007ffffffffffffffff --num_processes=15
+    command: python docker_mode_range_2.py --start= --end=000000000000000000000000000000000000000000000007ffffffffffffffff --num_processes=15

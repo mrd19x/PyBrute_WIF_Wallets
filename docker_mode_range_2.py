@@ -136,7 +136,7 @@ def match_addresses_cpu(addresses, match_file, log_file_compressed, log_file_unc
     count = 0
     start_time = time.time()
 
-    buffer_size = 10000000
+    buffer_size = 1000000
     log_uncompressed_buffer = []
     log_compressed_buffer = []
     
@@ -184,7 +184,7 @@ def match_addresses_cpu(addresses, match_file, log_file_compressed, log_file_unc
                 return
             
             count += 1
-            if count % 1 == 0:  # Log stats every 1000 iterations
+            if count % 1 == 0:  # Log stats every 1 iterations
                 elapsed_time = time.time() - start_time
                 speed = count / elapsed_time
                 stats_queue.put((process_id, count, elapsed_time, speed))
@@ -270,10 +270,10 @@ if __name__ == "__main__":
     start_range = int(args.start, 16) if args.start else None
     end_range = int(args.end, 16) if args.end else None
 
-    data_file = 'data.txt'
-    match_file = 'match.txt'
-    log_file_compressed = 'process_log_compressed'
-    log_file_uncompressed = 'process_log_uncompressed'
+    data_file = '/app/data.txt'
+    match_file = '/app/results/match.txt'
+    log_file_compressed = '/app/logs/process_log_compressed'
+    log_file_uncompressed = '/app/logs/process_log_uncompressed'
     num_processes = args.num_processes
 
     check_addresses_from_file(data_file, match_file, log_file_compressed, log_file_uncompressed, num_processes, start_range, end_range)
