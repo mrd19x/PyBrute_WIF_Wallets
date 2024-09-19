@@ -35,7 +35,7 @@ def convertbits(data, frombits, tobits, pad=True):
 
 def bech32_encode(hrp, data):
     """Encode a Bech32 string."""
-    alphabet = 'qpzry9x8gf2tvdw0s3jn54khce6mua7l'
+    alphabet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890'
     
     def polymod(values):
         """Compute the checksum polynomial."""
