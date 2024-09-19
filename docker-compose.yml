@@ -9,9 +9,9 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '10.0'
+          cpus: '15.0'
     volumes:
       - ./logs:/app/logs
       - ./results:/app/results
       - ./data.txt:/app/data.txt
-    command: python docker_mode.py
+    command: python local_mode_range_2.py --start= --end=000000000000000000000000000000000000000000000007ffffffffffffffff --num_processes=15
