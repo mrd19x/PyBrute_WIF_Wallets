@@ -3,6 +3,7 @@ import base58
 import time
 import concurrent.futures
 import threading
+import os  # Untuk mendapatkan jumlah core CPU
 
 def sha256(data):
     """Return the SHA-256 hash of the input data."""
@@ -76,7 +77,12 @@ def main():
     start_hex = input("Masukkan nilai start_hex (62-68 karakter): ").strip()
     end_hex = input("Masukkan nilai end_hex (62-68 karakter): ").strip()
     address_target = input("Masukkan target address: ").strip()
-    core_cpu = int(input("Masukkan jumlah core CPU yang digunakan: ").strip())
+
+    # Menentukan jumlah core CPU yang tersedia
+    total_cores = os.cpu_count()
+    core_cpu = max(1, int(total_cores * 0.6))  # Ambil 60% dari total core, minimal 1 core
+
+    print(f"\nMenggunakan {core_cpu} core CPU (60% dari {total_cores} total core).\n")
 
     # Convert hex strings to integers for iteration
     start_int = int(start_hex, 16)
