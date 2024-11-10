@@ -1,5 +1,6 @@
 import hashlib
 import base58
+import time
 
 def sha256(data):
     """Return the SHA-256 hash of the input data."""
@@ -52,17 +53,23 @@ def main():
     end_hex = input("Masukkan nilai end_hex (62-68 karakter): ").strip()
     address_target = input("Masukkan target address: ").strip()
 
-    print("\nMemulai proses konversi...\n")
-
     # Convert hex strings to integers for iteration
     start_int = int(start_hex, 16)
     end_int = int(end_hex, 16)
 
+    # Calculate the range of addresses to be processed
+    address_range = end_int - start_int + 1
+
+    # Print out the details for the user
+    print(f"\nMemulai proses konversi...\n")
+    print(f"Total address dalam rentang: {address_range}")
+    
+    # Start processing addresses
+    start_time = time.time()
+
     # Iterate through the range of hex values
     for i in range(start_int, end_int + 1):
         hex_key = hex(i)[2:].zfill(len(start_hex))  # Keep the original length
-        print(f"Memproses kunci hex: {hex_key}")
-
         # Generate WIF (compressed and uncompressed)
         wif_compressed = hex_to_wif(hex_key, compressed=True)
         wif_uncompressed = hex_to_wif(hex_key, compressed=False)
@@ -78,11 +85,22 @@ def main():
         # Check if either address matches the target address
         if address_compressed == address_target:
             print(f"\nAddress ditemukan! WIF Compressed: {wif_compressed}, Address: {address_compressed}")
+            print(f"Waktu yang dibutuhkan: {time.time() - start_time:.2f} detik")
             return  # Stop the loop when target address is found
 
         if address_uncompressed == address_target:
             print(f"\nAddress ditemukan! WIF Uncompressed: {wif_uncompressed}, Address: {address_uncompressed}")
+            print(f"Waktu yang dibutuhkan: {time.time() - start_time:.2f} detik")
             return  # Stop the loop when target address is found
+
+        # Display current processing speed every 1000 addresses
+        if i % 1000 == 0:
+            elapsed_time = time.time() - start_time
+            addresses_processed = i - start_int + 1
+            processing_speed = addresses_processed / elapsed_time if elapsed_time > 0 else 0
+            
+            # Print the update on the same line
+            print(f"\rHex: {hex_key} | Kecepatan: {processing_speed:.2f} address/detik", end='')
 
     print("\nProses konversi selesai tanpa menemukan address yang cocok.")
 
